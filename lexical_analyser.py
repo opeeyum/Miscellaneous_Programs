@@ -33,16 +33,13 @@ def identify(st:str):
 count = 0 #token count
 line = input(">>>> ")
 tokens = line.split(' ')
-#print(tokens)
 print("\n")
 
 for t in tokens:
 	
 	if len(t) != 1:
 		temp = ""
-		#print("t = ",t)
 		for i in t:
-			#print("i = ", i)
 			if i in seprators:
 				if len(temp) != 0:
 					result = identify(temp)
@@ -52,7 +49,6 @@ for t in tokens:
 				result = identify(i)
 				print(i, ": ",result)
 				count+=1
-				#print(temp)
 				temp=""
 			else :
 				temp += i
