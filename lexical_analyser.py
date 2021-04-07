@@ -28,6 +28,13 @@ def identify(st:str):
 	else:
 		return "User defined Identifier"
 
+# Function to print string
+def PRINT(st:str):
+	global count
+	if len(st) != 0:
+		result = identify(st)
+		print(st, ": ",result)
+		count+=1
 #------------------------------------------------------------
 
 count = 0 #token count
@@ -35,29 +42,39 @@ line = input(">>>> ")
 tokens = line.split(' ')
 print("\n")
 
-for t in tokens:
-	
+for t in tokens:	
 	if len(t) != 1:
 		temp = ""
-		for i in t:
-			if i in seprators:
-				if len(temp) != 0:
-					result = identify(temp)
-					print(temp, ": ",result)
-					count+=1
-
-				result = identify(i)
-				print(i, ": ",result)
+		i = 0; lent = len(t)
+		while i < lent:
+			if t[i] in seprators:
+				PRINT(temp)
+				result = identify(t[i])
+				print(t[i], ": ",result)
 				count+=1
 				temp=""
-			else :
-				temp += i
-				#print(temp)
 
-		if len(temp) != 0:
-			result = identify(temp)
-			print(temp, ": ",result)
-			count+=1
+			elif ord(t[i]) == ord("'") :
+				i+=1
+				f = t[i:].find("'")
+				temp += t[i:i+f]
+				i+=f
+				PRINT(temp)
+				temp=""
+
+			elif ord(t[i]) == ord('"'):
+				i+=1
+				f = t[i:].find('"')
+				temp += t[i:i+f]
+				i+=f
+				PRINT(temp)
+				temp=""
+
+			else :
+				temp += t[i]
+			i+=1
+
+		PRINT(temp)
 
 	else:
 		result = identify(t)
