@@ -30,7 +30,6 @@ using namespace std;
 int main()
 {   
     string str1, str2;
-    int length = 0;
 
     cout<<"Enter first string: ";
     getline(cin, str1);
