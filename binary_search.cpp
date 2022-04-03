@@ -1,54 +1,57 @@
 #include<iostream>
 using namespace std;
-void Binary_search(int*, int, int, int);
+
+int Binary_search(int*, int, int, int);
+
 int main()
 {
-    int n;
+    // Length of an array
+    int n=0;
     cout<<"Enter, How many numbers: ";
     cin>>n;
+
+    // Filling up the array
     int a[n];
     cout<<"Enter sorted list of numbers: ";
     for(int i=0; i<n; ++i)
-    {
-        cin>>a[i];
-    }
-    int value;
-    cout<<"Enter value to be found: ";cin>>value;
-    Binary_search(a, value, 0, n-1);
-}
-void Binary_search(int* a, int value, int first, int last)
-{
-    if(first==last)
-    {
-        if(a[first]==value)
-        {
-            cout<<endl;
-            cout<<value<<" found at index "<<first<<", a["<<first<<"] = "<<value;
-            cout<<endl;
-        }
-        else
-        {
-            cout<<endl;
-            cout<<value<<" not found! ";
-            cout<<endl;
-        }
-    }
+    cin>>a[i];
+
+    // Taking value to be find
+    int target=0;
+    cout<<"Enter target to be found: ";
+    cin>> target;
+
+    // Calling Binary search function
+    int ans = Binary_search(a, target, 0, n-1);
+
+    // Binary Search function will return -1 if target not in the array
+    if(ans == -1)
+    cout<<target<<" not found! "<<"\n";
+
+    // Binary Search function will return index if target is in the array
     else
-    {
-        int mid =(first+last)/2;
-        if(a[mid]==value)
-        {
-           cout<<endl;
-           cout<<value<<" found at index "<<mid<<", a["<<mid<<"] = "<<value;
-           cout<<endl;
-        }
-        else if(a[mid]>value)
-        {
-            Binary_search(a, value, first, mid-1);
-        }
-        else if(a[mid]<value)
-        {
-            Binary_search(a, value, mid+1, last);
-        }
-    }
+    cout<<target<<" found at index "<<ans<<", a["<<ans<<"] = "<<target<<"\n";
+}
+
+int Binary_search(int* a, int target, int first, int last)
+{
+    // Find mid
+    int mid = (first+last) / 2;
+
+    // If a[mid] ie the target return mid
+    if(a[mid] == target)
+    return mid;
+    
+    // Array has only one element and a[mid] is not the target
+    else if(first == last)
+    return -1;
+       
+    // If a[mid] target is greater than target, search in left to the mid   
+    else if(a[mid] > target)
+    return Binary_search(a, target, first, mid-1);
+    
+    // Else mid is less or equal to the target, search in right to the mid
+    else
+    return Binary_search(a, target, mid+1, last);
+
 }
