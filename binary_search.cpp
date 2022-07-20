@@ -38,19 +38,19 @@ int Binary_search(int* a, int target, int first, int last)
     // Find mid
     int mid = (first+last) / 2;
 
-    // If a[mid] ie the target return mid
+    // If a[mid] is the target return mid
     if(a[mid] == target)
     return mid;
     
-    // Array has only one element and a[mid] is not the target
+    // If Array has only one element and a[mid] is not the target
     else if(first == last)
     return -1;
        
-    // If a[mid] target is greater than target, search in left to the mid   
+    // If a[mid] is greater than target, search in left to the mid   
     else if(a[mid] > target)
     return Binary_search(a, target, first, mid-1);
     
-    // Else mid is less or equal to the target, search in right to the mid
+    // If a[mid] is less or equal to the target, search in right to the mid
     else
     return Binary_search(a, target, mid+1, last);
 

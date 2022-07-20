@@ -3,7 +3,7 @@ using namespace std;
 
 void prime_factors(int n)
 {
-    //Starting with 2 as is netiher prime nor composite.
+    //Starting with 2 as 1 is netiher prime nor composite.
     int temp = 2;
     while(n > 1)
     {
@@ -24,7 +24,5 @@ int main()
     int arr[] = {4, 6, 8, 10, 12};
     int n = 5;
     for(int i=0; i<n; i++)
-    {
-        prime_factors(arr[i]);
-    }
+    prime_factors(arr[i]);
 }
